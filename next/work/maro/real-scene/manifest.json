@@ -42,7 +42,7 @@
   "frames": [
     {
       "index": 0,
-      "camera": "camera-0.jpg",
+      "camera": "camera-0.webp",
       "scan": "scan-0.bin",
       "count": 105227,
       "targetHits": 895,
