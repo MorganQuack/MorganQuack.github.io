@@ -1,1 +1,180 @@
-<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Maro / Image credits</title><style>body{font:17px/1.7 system-ui;margin:60px auto;padding:0 24px;max-width:760px;color:#173a34;background:#f3f6f4}a{color:inherit}h1{font-size:40px;line-height:1.1}h2{margin-top:40px;font-size:23px}</style><a href="./">Back to case</a><h1>Contemporary demonstration.<br>Recorded, licensed sources.</h1><p>The camera and LiDAR sequence are not historical Maro customer data. Interface and choreography are a 2026 design candidate.</p><h2>PandaSet 019</h2><p>Source: Scale AI, Inc. and Hesai Photonics Technology Co., Ltd. <a href="https://github.com/scaleapi/pandaset-devkit">PandaSet</a>, licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Each point cloud is a single recorded sweep from sensor 0. Camera alignment uses supplied calibration; highlighted target points and the presentation camera are contemporary display choices. Missing surfaces are not reconstructed.</p><p>Car and bus category references are crops of the front-camera frame. The project-rule comparison crops an occluded person from the recorded right camera. The estimated full-body box is an illustrative rule boundary, not a dataset ground-truth label.</p><h2>Truck category reference</h2><p><a href="https://commons.wikimedia.org/wiki/File:BoxTruck.jpg">BoxTruck.jpg by Wjmoore17</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>. Original image retained; displayed at a smaller size. This is a category example from a separate source, not another view of the recorded scene.</p><h2>Historical work</h2><p>The original workflow, configuration, rule and export images support the case where specifically linked. Research records support the problem framing and design process. Current interfaces are not described as historical shipped screens. Two historical screenshot copies have account areas masked for this private review; the unmasked originals remain local.</p><h2>Boundary explanation model</h2><p>The neutral silver vehicle is AI-generated artwork made for this 2026 presentation. It explains two visible contact points and a two-dimensional boundary reference. Its geometry is illustrative, not a measured camera or LiDAR reconstruction. The smaller recorded source image remains separate for checking the actual task.</p></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#eef2e9">
+  <title>Maro / Sources and reconstruction</title>
+  <script>
+    if (['zh', 'cn'].includes(new URLSearchParams(location.search).get('lang'))) {
+      document.documentElement.lang = 'zh-CN';
+      document.title = 'Maro / 素材来源与重构边界';
+    }
+  </script>
+  <style>
+    @font-face{font-family:Manrope;src:url('../../fonts/manrope-latin-400-normal.woff2') format('woff2');font-weight:400;font-display:swap}
+    @font-face{font-family:Manrope;src:url('../../fonts/manrope-latin-700-normal.woff2') format('woff2');font-weight:700;font-display:swap}
+    :root{color-scheme:light;--paper:#eef2e9;--ink:#173a34;--muted:#49665b;--rule:#bccdc1;--accent:#cce993}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.7 Manrope,-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}
+    a{color:inherit;text-decoration-color:#729280;text-underline-offset:4px}
+    a:hover{text-decoration-color:var(--ink)}
+    a:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+    html[lang="en"] [data-locale="zh"],html[lang="zh-CN"] [data-locale="en"]{display:none!important}
+    .masthead{border-bottom:1px solid var(--rule)}
+    .masthead-inner{max-width:1160px;margin:auto;padding:20px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{font-weight:700;font-size:16px;letter-spacing:-.035em;text-decoration:none}
+    .brand span{font-size:12px;font-weight:400;letter-spacing:0;margin-left:10px;color:var(--muted)}
+    .masthead-actions{display:flex;align-items:center;gap:28px;font-size:12px}
+    .return-link{text-decoration:none;border-bottom:1px solid var(--ink);padding:7px 0}
+    .language{display:flex;gap:11px;align-items:center}
+    .language a{text-decoration:none;color:var(--muted)}
+    html[lang="en"] .language .lang-en,html[lang="zh-CN"] .language .lang-zh{color:var(--ink);font-weight:700;border-bottom:1px solid var(--ink)}
+    main{max-width:1160px;margin:auto;padding:76px 32px 112px}
+    .hero{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:60px;align-items:end;padding-bottom:75px}
+    .eyebrow{display:flex;align-items:center;gap:10px;margin:0 0 30px;font-size:12px;font-weight:700;letter-spacing:.06em;color:var(--muted)}
+    .eyebrow::before{content:"";display:block;width:9px;height:9px;background:var(--accent);border:1px solid var(--ink)}
+    h1{font-size:clamp(50px,7.2vw,98px);font-weight:700;line-height:1.03;letter-spacing:-.065em;margin:0;max-width:850px}
+    html[lang="zh-CN"] h1{letter-spacing:-.055em;line-height:1.16}
+    .intro{margin:0 0 4px;padding-left:18px;border-left:2px solid var(--ink);font-size:15px;line-height:1.8;color:var(--muted)}
+    .record-list{border-top:1px solid var(--ink)}
+    .record{display:grid;grid-template-columns:72px minmax(0,1fr) 145px;gap:20px;padding:40px 0 47px;border-bottom:1px solid var(--rule)}
+    .record-number{font:700 12px/1.5 Manrope,sans-serif;color:var(--muted);padding-top:7px}
+    .record h2{font-size:clamp(24px,2.6vw,32px);font-weight:700;line-height:1.22;letter-spacing:-.04em;margin:0 0 17px}
+    .record p{max-width:690px;margin:0 0 14px;color:#29483d}
+    .record p:last-child{margin-bottom:0}
+    .record-type{font-size:12px;line-height:1.45;text-align:right;color:var(--muted);padding-top:9px}
+    .record a{font-weight:700;overflow-wrap:anywhere}
+    .close{padding-top:55px;display:flex;justify-content:space-between;gap:26px;align-items:center}
+    .close p{margin:0;color:var(--muted);font-size:13px;max-width:560px}
+    .close a{font-size:13px;font-weight:700;text-decoration:none;border-bottom:1px solid var(--ink);padding:10px 0}
+    @media(max-width:800px){
+      .hero{grid-template-columns:1fr;gap:28px;padding-bottom:54px}
+      .intro{max-width:580px}
+      .record{grid-template-columns:44px minmax(0,1fr);gap:14px;padding:30px 0 36px}
+      .record-type{grid-column:2;text-align:left;padding:0}
+    }
+    @media(max-width:520px){
+      .masthead-inner{padding:14px 20px}
+      .brand span{display:none}
+      .masthead-actions{gap:16px}
+      .return-link{font-size:12px}
+      main{padding:50px 20px 72px}
+      h1{font-size:clamp(39px,11vw,54px)}
+      .eyebrow{margin-bottom:20px}
+      .record{grid-template-columns:30px minmax(0,1fr);gap:10px}
+      .record p{font-size:15px;line-height:1.72}
+      .close{display:block}
+      .close a{display:inline-block;margin-top:22px}
+    }
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <a class="brand" data-locale="en" href="./?lang=en#opening">Maro <span>Yunji Ma / Product experience</span></a>
+      <a class="brand" data-locale="zh" href="./?lang=zh#opening">Maro <span>马云骥 / 产品体验</span></a>
+      <div class="masthead-actions">
+        <a class="return-link" data-locale="en" href="./?lang=en#opening">Back to case ↗</a>
+        <a class="return-link" data-locale="zh" href="./?lang=zh#opening">返回案例 ↗</a>
+        <nav class="language" aria-label="Language / 语言">
+          <a class="lang-en" href="?lang=en" lang="en">EN</a><span aria-hidden="true">/</span><a class="lang-zh" href="?lang=zh" lang="zh-CN">中文</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <div class="hero">
+      <div>
+        <p class="eyebrow" data-locale="en">MARO / SOURCE RECORD</p>
+        <p class="eyebrow" data-locale="zh">MARO / 素材记录</p>
+        <h1 data-locale="en">Sources.<br>Boundaries.</h1>
+        <h1 data-locale="zh">素材来源，<br>重构边界。</h1>
+      </div>
+      <p class="intro" data-locale="en">The camera and LiDAR sequence are recorded, licensed material. The interface and choreography are a 2026 portfolio reconstruction, not historical Maro customer data.</p>
+      <p class="intro" data-locale="zh">相机与 LiDAR 序列来自有许可的实采素材。界面与演示编排是 2026 年的作品集重构，并非 Maro 客户的历史数据。</p>
+    </div>
+
+    <div class="record-list">
+      <article class="record">
+        <span class="record-number">01</span>
+        <div>
+          <h2 data-locale="en">PandaSet 019</h2>
+          <h2 data-locale="zh">PandaSet 019</h2>
+          <div data-locale="en">
+            <p>Source: Scale AI, Inc. and Hesai Photonics Technology Co., Ltd. <a href="https://github.com/scaleapi/pandaset-devkit">PandaSet</a> is licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</p>
+            <p>Each point cloud is one recorded sweep from sensor 0. Camera alignment uses the supplied calibration. Highlighted target points and the presentation camera are contemporary display choices; missing surfaces are not reconstructed.</p>
+            <p>Car and bus references are crops of the front-camera frame. The project-rule comparison crops an occluded person from the recorded right camera. The estimated full-body box illustrates a rule boundary; it is not a dataset ground-truth label.</p>
+          </div>
+          <div data-locale="zh">
+            <p>素材来自 Scale AI, Inc. 与 Hesai Photonics Technology Co., Ltd. 的 <a href="https://github.com/scaleapi/pandaset-devkit">PandaSet</a>，许可为 <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>。</p>
+            <p>每幅点云对应传感器 0 的一次实采扫描；相机对齐采用数据集提供的标定。高亮目标点与展示用镜头属于本次呈现方式，缺失表面没有被补造。</p>
+            <p>小汽车和公交车类别参照裁自前视相机画面。项目规则对照使用右侧相机中被遮挡行人的裁切图。推测的全身框仅示意规则边界，并非数据集的真实标注。</p>
+          </div>
+        </div>
+        <span class="record-type" data-locale="en">RECORDED SCENE<br>CC BY 4.0</span>
+        <span class="record-type" data-locale="zh">实采场景<br>CC BY 4.0</span>
+      </article>
+
+      <article class="record">
+        <span class="record-number">02</span>
+        <div>
+          <h2 data-locale="en">Truck category reference</h2>
+          <h2 data-locale="zh">卡车类别参照</h2>
+          <div data-locale="en">
+            <p><a href="https://commons.wikimedia.org/wiki/File:BoxTruck.jpg">BoxTruck.jpg by Wjmoore17</a>, licensed under <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>. The original image is retained and displayed at a smaller size. It is a separate category example, not another view of the recorded scene.</p>
+          </div>
+          <div data-locale="zh">
+            <p><a href="https://commons.wikimedia.org/wiki/File:BoxTruck.jpg">Wjmoore17 的 BoxTruck.jpg</a> 采用 <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a> 许可。原图保留，仅缩小显示。这是一张独立来源的类别示例，并非实采场景的另一视角。</p>
+          </div>
+        </div>
+        <span class="record-type" data-locale="en">CATEGORY IMAGE<br>CC BY-SA 3.0</span>
+        <span class="record-type" data-locale="zh">类别图片<br>CC BY-SA 3.0</span>
+      </article>
+
+      <article class="record">
+        <span class="record-number">03</span>
+        <div>
+          <h2 data-locale="en">Historical work</h2>
+          <h2 data-locale="zh">历史工作材料</h2>
+          <div data-locale="en">
+            <p>Original workflow, configuration, rule, and export images support the case where they are specifically linked. Research records support the problem framing and design process. Current interfaces are not presented as historical shipped screens.</p>
+            <p>Two displayed historical screenshot copies mask account areas; the unmasked originals remain local.</p>
+          </div>
+          <div data-locale="zh">
+            <p>原有的流程、配置、规则与导出画面仅在明确关联的位置支撑案例；研究记录用于说明问题界定与设计过程。当前重构界面不被表述为历史上线画面。</p>
+            <p>公开展示的两张历史截图副本遮盖了账户区域；未遮盖的原件保留在本机。</p>
+          </div>
+        </div>
+        <span class="record-type" data-locale="en">HISTORICAL ANCHORS<br>BOUNDED</span>
+        <span class="record-type" data-locale="zh">历史依据<br>有边界</span>
+      </article>
+
+      <article class="record">
+        <span class="record-number">04</span>
+        <div>
+          <h2 data-locale="en">Boundary explanation model</h2>
+          <h2 data-locale="zh">边界解释模型</h2>
+          <div data-locale="en">
+            <p>The neutral silver vehicle is AI-generated artwork for this 2026 presentation. It explains two visible contact points and a two-dimensional boundary reference. Its geometry is illustrative, not a measured camera or LiDAR reconstruction. The smaller recorded source image remains separate for checking the actual task.</p>
+          </div>
+          <div data-locale="zh">
+            <p>银色中性车辆是为 2026 年展示生成的 AI 图像，用于解释两个可见接地点与二维边界参照。其几何形状只作示意，不是依据相机或 LiDAR 测量重建；另有独立的实采原图用于核对实际任务。</p>
+          </div>
+        </div>
+        <span class="record-type" data-locale="en">EXPLANATION ART<br>ILLUSTRATIVE</span>
+        <span class="record-type" data-locale="zh">解释图像<br>示意性</span>
+      </article>
+    </div>
+
+    <div class="close">
+      <p data-locale="en">One case, several kinds of evidence. Each source keeps its own role.</p>
+      <p data-locale="zh">同一案例里的不同素材，各自保留清楚的来源和作用。</p>
+      <a data-locale="en" href="./?lang=en#opening">Return to Maro ↗</a>
+      <a data-locale="zh" href="./?lang=zh#opening">返回 Maro ↗</a>
+    </div>
+  </main>
+</body>
+</html>
